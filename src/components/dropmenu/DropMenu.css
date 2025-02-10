@@ -1,0 +1,63 @@
+/* Basic styling for the dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown-toggle:hover {
+  background-color: #0056b3;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+}
+
+.dropdown-menu li {
+  padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-menu li a:hover {
+  color: #007bff;
+}
+
+/* Class to force overflow visible */
+.overflow-visible {
+  overflow: visible !important;
+}
+.dropdown-menu{
+  top:100% !important;
+}
+
+ul.dropdown-menu {
+  width: fit-content;
+  padding: 10px;
+}

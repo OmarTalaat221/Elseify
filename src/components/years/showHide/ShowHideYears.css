@@ -1,0 +1,47 @@
+.showhide-warning {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .showhide-warning h3 {
+    color: #3498db;
+    font-size: 1.5em;
+  }
+  
+  .warning-message {
+    margin: 10px 0;
+    color: #e67e22;
+  }
+  
+  .year-details {
+    margin: 10px 0;
+    font-size: 1.1em;
+  }
+  
+  .rowEndDiv {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .btn-primary {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .btn-secondary {
+    background-color: #95a5a6;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover, .btn-secondary:hover {
+    opacity: 0.8;
+  }
+  

@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* ----------- Responsive ------------------ */
+.tablePageHeader {
+  margin: 20px 20px 20px 0 !important;
+}
+@media (max-width: 772px) {
+  .welcome-text h2 {
+    text-align: start !important;
+    font-size: 1.1rem !important;
+  }
+  .welcome-text p,
+  .table-header-content div span {
+    text-align: start !important;
+    font-size: 0.7rem !important;
+  }
+  input,
+  input::placeholder {
+    font-size: 0.6rem !important;
+  }
+
+  .pagination-button {
+    padding: 4px 5px;
+    height: fit-content !important;
+    font-size: 10px !important;
+  }
+
+  .pagination-info {
+    font-size: 7px !important;
+  }
+
+  .tableFooter {
+    flex-wrap: wrap !important;
+  }
+
+  .table-controls {
+    flex-wrap: wrap !important;
+    gap: 5px !important;
+  }
+  .global-search-input,
+  td.antSimulate-table-cell {
+    font-size: 12px !important;
+  }
+
+  .profile-name {
+    font-size: 9px !important;
+  }
+  h1.pageTitle {
+    font-size: 1rem !important;
+  }
+}

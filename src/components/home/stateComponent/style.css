@@ -1,0 +1,135 @@
+.stat-card {
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.082);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  width: 200px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.view-controls {
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1px solid rgba(128, 128, 128, 0.242);
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.view-btn {
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  padding: 0.3rem;
+}
+
+.view-btn.day {
+  color: #007bff;
+}
+
+.view-btn.month {
+  color: #28a745;
+}
+
+.view-btn.year {
+  color: #dc3545;
+}
+
+.view-btn.active {
+  border-color: currentColor;
+  transform: scale(1.2);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 0.5rem;
+}
+
+.stat-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.2rem 0;
+  color: #333;
+}
+
+.stat-value {
+  font-size: 1rem;
+  color: #007bff;
+  margin: 0;
+  font-weight: 700;
+}
+
+.date-picker {
+  margin-top: 0.5rem;
+}
+
+.date-picker input {
+  padding: 0.2rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.trend-indicator {
+  margin-top: 0.5rem;
+  padding-top: 0.1rem;
+  border-top: 0.1px solid rgba(128, 128, 128, 0.242);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.3rem;
+}
+
+.trend-icon {
+  font-size: 1.5rem;
+}
+
+.trend-percentage {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.trend-percentage.up {
+  color: #28a745;
+}
+
+.trend-percentage.down {
+  color: #dc3545;
+}
+
+.datePickerState {
+  box-shadow: none !important;
+  cursor: pointer;
+}

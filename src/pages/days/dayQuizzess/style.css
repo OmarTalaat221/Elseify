@@ -1,0 +1,26 @@
+.exam-questions {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.questions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.scoretablePageHeader {
+  padding: 20px 0;
+  border: 1px solid #80808040;
+  margin-bottom: 10px;
+  /* border-radius: 5px; */
+  border-left: transparent;
+  border-right: transparent;
+}

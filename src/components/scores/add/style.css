@@ -1,0 +1,14 @@
+form.animated-form.score-form {
+    flex-direction: row;
+    width: 100%;
+    align-items: initial;
+}
+form.animated-form.score-form  .form-group {
+    flex: 1;
+}
+
+form.animated-form.score-form button{
+   align-self: flex-end;
+}
+
+

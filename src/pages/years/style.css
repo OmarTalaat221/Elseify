@@ -1,0 +1,67 @@
+.tablePageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px 0 0;
+}
+
+.actions-btns, .flex-column, .actions-btn {
+  display: flex;
+  gap: 10px;
+  
+}
+
+.flex-column{
+  flex-direction: column;
+  padding: 10px;
+}
+
+.actions-btns > * {
+  font-size: 23px;
+}
+
+.c-pointer {
+  cursor: pointer;
+}
+
+.actions-btns {
+  display: flex;
+  gap: 8px;
+  position: relative;
+}
+
+.tooltip {
+  margin: 0 !important;
+  translate: -50%;
+  visibility: hidden;
+  
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center !important;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.actions-btns > *:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}

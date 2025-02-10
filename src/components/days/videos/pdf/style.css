@@ -1,0 +1,53 @@
+.pdfView svg {
+  margin: 0 !important;
+}
+.pdfView pre {
+  display: flex;
+  margin: 0;
+  margin-left: auto;
+  gap: 5px;
+}
+.pdfView pre p {
+  margin: 0;
+  cursor: pointer;
+}
+.pdfView a {
+  font-size: 22px;
+  color: black;
+  text-decoration: none;
+  margin: 0;
+}
+.pdfView span {
+  font-size: 50px;
+}
+.pdfView {
+  display: flex;
+  font-size: 27px;
+  gap: 10px;
+  align-items: center;
+}
+
+p.createnew:hover {
+  background: #80808057;
+  /* font-weight: 700; */
+  border: 3px solid transparent !important;
+
+}
+
+p.createnew svg {
+  font-size: 26px;
+}
+p.createnew {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 20px;
+  cursor: pointer;
+  border: 3px solid #80808057;
+  padding: 5px 13px;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+  margin-left: auto;
+  margin-right: 0;
+}

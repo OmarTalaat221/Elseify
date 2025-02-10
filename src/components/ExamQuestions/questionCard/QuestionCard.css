@@ -1,0 +1,97 @@
+.question-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 16px;
+  padding: 16px;
+  max-width: 400px;
+  gap: 15px;
+}
+
+.question-content {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.question-title {
+  font-size: 1.5rem;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.question-image {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.delete-btn.c-pointer.text-danger {
+  background: transparent;
+}
+.answers {
+  margin-bottom: 16px;
+}
+
+.answer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.answer-text {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.answer-radio {
+  margin-right: 4px;
+}
+
+.answer-label {
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 0.2px solid rgba(128, 128, 128, 0.315);
+}
+
+.action-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+}

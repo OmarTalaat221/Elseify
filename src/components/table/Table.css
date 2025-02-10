@@ -1,0 +1,360 @@
+
+.table-container {
+  font-family: Arial, sans-serif;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin: 0 20px 0 0;
+  
+  
+}
+
+
+.table-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.global-search-input {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.page-size-selector {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.export-button {
+  padding: 8px 16px;
+  margin-left: auto;
+  border: 1px solid #d9d9d9;
+  background-color: #4caf50;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.export-button:hover {
+  background-color: #45a049;
+}
+
+
+.antSimulate-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.antSimulate-table-header {
+  background-color: #f0f0f0;
+  cursor: pointer;
+  border: 2px solid #d9d9d9;
+  color: #333;
+  padding: 12px;
+  position: relative;
+}
+
+.table-header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.column-count {
+  font-size: 14px;
+  color: #007bff;
+  margin-left: 5px;
+}
+
+.column-search-input {
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.antSimulate-table-row:nth-child(odd) {
+  background-color: #fafafa;
+}
+
+.antSimulate-table-row:hover {
+  background-color: #f5f5f5;
+}
+
+.antSimulate-table-cell {
+  padding: 12px;
+  border-bottom: 1px solid #d9d9d9;
+  color: #333;
+}
+
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination-button {
+  padding: 8px 16px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 4px;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: #e9ecef;
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+}
+
+.pagination-button:disabled {
+  color: #d9d9d9;
+  cursor: not-allowed;
+  background-color: #f8f9fa;
+  border-color: #d9d9d9;
+}
+
+.pagination-button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+}
+
+.pagination-info {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.antSimulate-container {
+  overflow: auto;
+  max-width: 99.8%;
+}
+
+.antSimulate-container table {
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 1;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+
+.column-count {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.column-visibility-controls {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping to the next line if needed */
+  gap: 15px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.column-visibility-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  padding: 5px; 
+}
+
+.column-visibility-label:hover {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  /* padding: 5px; */
+}
+
+.checkbox-input {
+  accent-color: #007bff; /* Use a modern color for the checkbox */
+  width: 18px;
+  height: 18px;
+}
+
+.checkbox-label {
+  font-size: 14px;
+}
+
+.relativePath {
+  position: relative;
+  display: inline-block;
+}
+
+.visibility-button {
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.visibility-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: scale(1.05); /* Slight scale effect */
+}
+
+.multi-select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 200px;
+  z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.dropdown-label input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.dropdown-label:hover {
+  color: #007bff;
+}
+
+#select-all {
+  /* margin-right: 8px; */
+  font-weight: bold;
+}
+
+.multi-select-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 15px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+}
+
+.multi-select-dropdown::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 15px;
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent #ddd transparent;
+}
+
+
+/* ============== */.tablePageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px 0 0;
+}
+
+.actions-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.actions-btns > * {
+  font-size: 23px;
+}
+
+.c-pointer {
+  cursor: pointer;
+}
+
+.actions-btns {
+  display: flex;
+  gap: 8px;
+  position: relative;
+}
+
+.tooltip {
+  margin: 0 !important;
+  translate: -50%;
+  visibility: hidden;
+  
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center !important;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.actions-btns > *:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
