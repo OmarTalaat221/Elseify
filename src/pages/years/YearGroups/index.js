@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
 import {
   students,
   examIcon,
@@ -17,11 +17,12 @@ import EditGroupModal from "../../../components/groups/edit";
 import ShowHideGroupModal from "../../../components/groups/show-hide";
 import CustomTable from "../../../components/table";
 import DropMenu from "../../../components/dropmenu";
+import {FaLock, FaLockOpen} from "react-icons/fa";
 
 function Groups() {
   const [groups, setGroups] = useState([]);
   const [studentsData, setStudents] = useState([]);
-  const { id } = useParams();
+  const {id} = useParams();
   const [openModal, setOpenModal] = useState(false);
   const [assignModal, setAssignModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
@@ -37,10 +38,11 @@ function Groups() {
         "https://camp-coding.online/Teacher_App_2024/Mohamed_Elseify_New/doctor/home/select_groups.php",
         {
           method: "POST",
-          header: { "Content-Type": "Application/Json" },
-          body: JSON.stringify({ generation_id: id }),
+          header: {"Content-Type": "Application/Json"},
+          body: JSON.stringify({type: isOnline ? "online" : "offline"}),
         }
       );
+      console.log(response);
       const data = await response.json();
       setGroups(data);
     } catch (err) {
@@ -51,6 +53,22 @@ function Groups() {
   useEffect(() => {
     getGroups();
   }, []);
+  const handleToggle = () => {
+    setIsOnline(!isOnline);
+  };
+
+  const [isOnline, setIsOnline] = useState(true);
+  const [filteredGroups, setFilteredGroups] = useState([]);
+
+  useEffect(() => {
+    if (isOnline) {
+      const filtered = groups.filter((e) => e.type === "online");
+      setFilteredGroups(filtered);
+    } else {
+      const filtered = groups.filter((e) => e.type === "offline");
+      setFilteredGroups(filtered);
+    }
+  }, [isOnline, groups]);
 
   const columns = [
     {
@@ -73,18 +91,28 @@ function Groups() {
               >
                Students
               </div> */}
-              {row?.gen?.type == "سنتر"?<div
-                onClick={() => navigate(`${row.group_id}/exams`)}
-                className="open-btn c-pointer btn btn-primary"
-              >
-               Exams
-              </div>:null}
+              {/* {row?.gen?.type == "سنتر" ? (
+                <div
+                  onClick={() => navigate(`${row.group_id}/exams`)}
+                  className="open-btn c-pointer btn btn-primary"
+                >
+                  Exams
+                </div>
+              ) : null} */}
 
-              <div 
-                className="open-btn c-pointer btn btn-primary"
+              <div
+                className="open-btn c-pointer btn btn-outline-primary"
                 onClick={() => navigate(`${row?.group_id}/Packages`)}
               >
                 Packages
+              </div>
+              <div
+                className="open-btn c-pointer btn btn-outline-primary"
+                onClick={() =>
+                  navigate(`${row?.group_id}/exams`, {state: isOnline})
+                }
+              >
+                Exams
               </div>
             </div>
           </DropMenu>
@@ -106,7 +134,21 @@ function Groups() {
           Add Group
         </button> */}
       </div>
-      <CustomTable dataSource={groups} columns={columns} />
+      <div className="d-flex gap-2 justify-content-center py-2 align-items-center">
+        <button
+          className={`btn ${isOnline ? "btn-primary" : "btn-outline-primary"}`}
+          onClick={handleToggle}
+        >
+          Online
+        </button>
+        <button
+          className={`btn ${!isOnline ? "btn-primary" : "btn-outline-primary"}`}
+          onClick={handleToggle}
+        >
+          Offline
+        </button>
+      </div>
+      <CustomTable dataSource={filteredGroups} columns={columns} />
       <AssignToGroup openModal={assignModal} setOpenModal={setAssignModal} />
       <AddGroupModal openModal={addModal} setOpenModal={setAddModal} />
       <DeleteGroupModal openModal={deleteModal} setOpenModal={setDeleteModal} />

@@ -1,42 +1,43 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Modal from "../../../components/modal";
-import Toast from "../../../components/toast";
 import Loader from "../../../components/loader";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
+import {secondUrl} from "../../../utils/baseUrl";
+import toast from "react-hot-toast";
+import axios from "axios";
 
-function DeleteQuestion({ questionId, openModal, setOpenModal, getFunction }) {
+function DeleteQuestion({questionId, openModal, setOpenModal, getFunction}) {
   const [loading, setLoading] = useState(false);
-  const { pack, group, lecture, day } = useParams();
+  const {pack, group, lecture, day} = useParams();
 
   const handleDelete = async () => {
+    const dataToSend = {
+      question_id: openModal?.question_id,
+    };
+
     setLoading(true);
 
     try {
       const userData = JSON.parse(localStorage.getItem("moreenglishlogin"));
-      const dataToSend = {
-        question_id: openModal?.question_id,
-        subject_id: lecture,
-      };
 
-      const response = await fetch(
-        "https://camp-coding.online/Teacher_App_2024/Mohamed_Elseify_New/doctor/home/delete_question.php",
+      const response = await axios.post(
+        `${secondUrl}delete_question.php`,
+        dataToSend,
         {
-          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(dataToSend),
         }
       );
 
-      const data = await response.text();
-      if (data.trim() !== "error") {
-        alert(data);
+      const data = response.data;
+      if (data == "success") {
+        toast.success(data);
         setOpenModal(false);
-        getFunction(); // Refresh the questions list after deletion
+        getFunction();
       } else {
         // Handle error when deletion fails
-        Toast.show({
+        toast.error({
           text: "An error occurred while deleting the question.",
           buttonText: "Retry",
           type: "danger",
@@ -45,7 +46,7 @@ function DeleteQuestion({ questionId, openModal, setOpenModal, getFunction }) {
       }
     } catch (error) {
       console.error("Error deleting question:", error);
-      Toast.show({
+      toast.error({
         text: "An error occurred while deleting the question.",
         buttonText: "Retry",
         type: "danger",
@@ -63,20 +64,16 @@ function DeleteQuestion({ questionId, openModal, setOpenModal, getFunction }) {
       title={"Delete Question"}
       visible={openModal}
     >
-      <div className="delete-confirmation">
-        <p>Are you sure you want to delete this question?</p>
-        <div className="modal-actions">
-          <button
-            onClick={handleDelete}
-            className="confirm-btn"
-            disabled={loading}
-          >
-            {loading ? <Loader /> : "Yes, Delete"}
+      <div className="d-flex flex-column gap-3 ">
+        <div className="fs-5 bold">Are You Sure To Delete This Question?</div>
+        <div className="d-flex justify-content-end gap-3 align-items-center">
+          <button className="btn btn-success" onClick={handleDelete}>
+            Confirm
           </button>
+
           <button
+            className="btn btn-danger"
             onClick={() => setOpenModal(false)}
-            className="cancel-btn"
-            disabled={loading}
           >
             Cancel
           </button>

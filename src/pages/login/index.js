@@ -4,7 +4,7 @@ import "./AnimatedLoginForm.css";
 import { baseUrl } from "../../utils/baseUrl";
 
 const LoginForm = () => {
-  const [formData, setFormData] = useState({email: "", password: "" });
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,7 +24,7 @@ const LoginForm = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-         email: formData.email,
+          email: formData.email,
           password: formData.password,
         }),
       });

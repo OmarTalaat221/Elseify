@@ -30,7 +30,7 @@ function Groups() {
         {
           method: "POST",
           header: {"Content-Type": "Application/Json"},
-          body: JSON.stringify({generation_id: id}),
+          body: JSON.stringify({generation_id: id, type: "online"}),
         }
       );
       const data = await response.json();

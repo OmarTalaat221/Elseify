@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import CustomTable from "../../../components/table";
-import {deleteIcon, editIcon} from "../../../assets/svgIcons";
+import { deleteIcon, editIcon } from "../../../assets/svgIcons";
 import AddScore from "../../../components/groups/exams/scores/add";
-import {baseUrl} from "../../../utils/baseUrl";
-import {useParams} from "react-router-dom";
+import { baseUrl, secondUrl } from "../../../utils/baseUrl";
+import { useParams } from "react-router-dom";
 import Modal from "../../../components/modal";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 function YearsExamScore() {
   const [openModal, setOpenModal] = useState(false);
@@ -14,7 +15,7 @@ function YearsExamScore() {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openResetModal, setOpenResetModal] = useState(false);
-  const {gen_id, exam_id} = useParams();
+  const { gen_id, exam_id } = useParams();
   const [data, setData] = useState(null);
   const [rowData, setRowData] = useState([]);
 
@@ -22,18 +23,25 @@ function YearsExamScore() {
 
   const getData = async () => {
     try {
-      const response = await fetch(
-        baseUrl + "absence/select_quiz_students.php",
+      const response = await axios.post(
+        `${secondUrl}select_who_solved.php`,
         {
-          method: "POST",
-          header: {"Content-Type": "Application/Json"},
-          body: JSON.stringify({quiz_id: exam_id}),
+          exam_id: exam_id,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
         }
       );
-      const data = await response.json();
-      setStudents(data?.filter((item) => item?.score == "-"));
-      setData(data);
+
+      if (response?.status === 200) {
+        const data = response.data?.students; // Axios automatically parses JSON
+        setStudents(data?.filter((item) => item?.score === "0"));
+        setData(data);
+      } else {
+        throw new Error("Unexpected response status: " + response.status);
+      }
     } catch (err) {
+      console.error("Error fetching data:", err);
       setData([]);
     }
   };
@@ -49,8 +57,9 @@ function YearsExamScore() {
     setLoading(true);
     const dataSend = {
       quiz_id: exam_id,
-      student_id: rowData?.student_id,
+      student_id: rowData?.id,
     };
+
     try {
       const res = await axios.post(
         `${baseUrl}absence/reset_exam.php`,
@@ -59,7 +68,8 @@ function YearsExamScore() {
 
       console.log(res);
 
-      if (res?.data == "success") {
+      if (res?.status == 200) {
+        toast.success(res.data);
         getData();
         setOpenResetModal(false);
       }
@@ -72,21 +82,17 @@ function YearsExamScore() {
 
   const columns = [
     {
+      key: "position",
+      title: "Position",
+      dataIndex: "position",
+    },
+    {
       key: "name",
       title: "Student Name",
       dataIndex: "student_name",
       search: true,
     },
-    {
-      key: "phone",
-      title: "Phone Number",
-      dataIndex: "student_phone",
-    },
-    {
-      key: "parent_phone",
-      title: "parent Phone Number",
-      dataIndex: "parent_phone",
-    },
+
     {
       key: "score",
       title: "Score",
@@ -103,6 +109,7 @@ function YearsExamScore() {
         );
       },
     },
+
     {
       key: "action",
       title: "Actions",
@@ -110,7 +117,7 @@ function YearsExamScore() {
       render: (text, row) => {
         return (
           <>
-            {row?.score == "-" ? (
+            {row?.score == "0" ? (
               <div className="d-flex align-items-center">
                 <button
                   style={{
@@ -147,19 +154,6 @@ function YearsExamScore() {
 
   return (
     <div className="exam-scores">
-      <div
-        className="tablePageHeader scoretablePageHeader"
-        style={{flexDirection: "column", justifyContent: "flex-start"}}
-      >
-        <b style={{marginRight: "auto", marginLeft: "20px"}}>Add Score</b>
-        <AddScore
-          getStudents={getData}
-          id={exam_id}
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-          students={students}
-        />
-      </div>
       <CustomTable dataSource={data} columns={columns} />
 
       <Modal

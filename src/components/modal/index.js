@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "./Modal.css";
 
 const Modal = ({
@@ -13,7 +13,23 @@ const Modal = ({
   cancelText = "Cancel",
 }) => {
   const [closing, setClosing] = useState(false);
+  const modalRef = useRef(null);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        handleClose();
+      }
+    };
+
+    // Attach the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Clean up the event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [close, onCancel]);
   useEffect(() => {
     if (visible) {
       document.body.style.overflow = "hidden";
@@ -30,16 +46,15 @@ const Modal = ({
       if (onCancel) onCancel();
     }, 300);
   };
-  
-  
-  
-  
-  
+
   if (!visible && !closing) return null;
 
   return (
     <div className="custom-modal-overlay">
-      <div className={`custom-modal ${closing ? "custom-modal-exit" : ""}`}>
+      <div
+        ref={modalRef}
+        className={`custom-modal ${closing ? "custom-modal-exit" : ""}`}
+      >
         <div className="custom-modal-header">
           <h2>{title}</h2>
           <span onClick={() => handleClose()}>

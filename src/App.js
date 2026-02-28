@@ -4,6 +4,7 @@ import DefaultLayout from "./Layouts/defaultLayout";
 import RoutesComponent from "./components/Routes";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DropMenu from "./components/dropmenu";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           {/* <DropMenu /> */}
         </DefaultLayout>
       )}
+      <Toaster />
     </>
   );
 }

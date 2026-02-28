@@ -53,6 +53,8 @@ import VideoScores from "../../pages/lectures/VideoScores";
 import YearsLectures from "../../pages/years/YearsLectures";
 import YearsExams from "../../pages/years/YearsExams/YearsExams";
 import YearsExamScore from "../../pages/years/YearsExams/YearsExamsScore";
+import YearsExamQuestions from "../../pages/years/YearsExams/ExamQuestions";
+import YearsExamsQuestions from "../../pages/years/YearsExams/ExamQuestions";
 
 export const links = localStorage.getItem("moreenglishlogin")
   ? [
@@ -98,6 +100,11 @@ export const links = localStorage.getItem("moreenglishlogin")
             route: ":gen_id/exams/:exam_id/score",
             component: YearsExamScore,
           },
+          {
+            route: ":gen_id/exams/:exam_id/questions",
+            component: YearsExamsQuestions,
+          },
+
           {
             route: ":id/groups/:group/Packages",
             component: Packages,

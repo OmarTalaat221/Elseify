@@ -1,6 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import AddVideo from "../../../components/days/videos/add";
 import DeleteVideo from "../../../components/days/videos/delete";
 import EditVideo from "../../../components/days/videos/edit";
@@ -9,28 +14,34 @@ import ShowHideVideo from "../../../components/days/videos/showHide";
 import DropMenu from "../../../components/dropmenu";
 import CustomTable from "../../../components/table";
 import "./style.css";
+import Duplicate from "../../../components/days/videos/duplicate/duplicate";
 
 function Videos() {
   const [videos, setVideos] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const [openEditModal, setOpenEditModal] = useState(false);
+  const [duplicateModal, setDuplicateModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openShowHideModal, setOpenShowHideModal] = useState(false);
   const [pdfOpen, setPdfOpen] = useState(null);
   const [isPageLoading, setIsPageLoading] = useState(false);
   const { lecture, pack, yearId, group, lec_videos_ids, day } = useParams();
-const location = useLocation()
-  const [getNew, setGetNew] = useState(null)
+  const location = useLocation();
+  const [getNew, setGetNew] = useState(null);
+  const [rowData, setRowData] = useState([]);
   const [videoData] = useSearchParams();
   useEffect(() => {
-    if(videoData?.get("lec_videos_ids")&&!videoData?.get("lec_videos_ids") != null){
-    setGetNew(videoData?.get("lec_videos_ids"))
-  }}, [location.pathname, videoData?.get("lec_videos_ids")]);
-  useEffect(()=>{
-    getAllMyVediosFor()
-
-  },[getNew])
+    if (
+      videoData?.get("lec_videos_ids") &&
+      !videoData?.get("lec_videos_ids") != null
+    ) {
+      setGetNew(videoData?.get("lec_videos_ids"));
+    }
+  }, [location.pathname, videoData?.get("lec_videos_ids")]);
+  useEffect(() => {
+    getAllMyVediosFor();
+  }, [getNew]);
   const getAllMyVediosFor = async () => {
     setIsPageLoading(true);
     const data_to_send = {
@@ -57,7 +68,7 @@ const location = useLocation()
           pdfLink: item.attach_pdf,
           deleteLoading: false,
           editLoading: false,
-          hidden: false, 
+          hidden: false,
         }));
         setVideos(allData);
       } else {
@@ -96,16 +107,14 @@ const location = useLocation()
       dataIndex: "actions",
       render: (text, row) => (
         <DropMenu child={"Actions"}>
-        <div className="actions-btns">
-       
-          <div
-            className="open-btn c-pointer text-primary"
-            onClick={() => setOpenEditModal(row)}
-          >
-            <div className="btn btn-warning">Edit</div>
-            
-          </div>
-          {/* <div
+          <div className="actions-btns">
+            <div
+              className="open-btn c-pointer text-primary"
+              onClick={() => setOpenEditModal(row)}
+            >
+              <div className="btn btn-warning">Edit</div>
+            </div>
+            {/* <div
             className="open-btn c-pointer text-primary"
             onClick={() => window.open(row.link, "_blank")}
           >
@@ -117,28 +126,44 @@ const location = useLocation()
             >
               <div className="btn btn-dark">PDF</div>
             </div>
-          <div
-            className="open-btn c-pointer text-primary"
-            onClick={() =>
-              navigate(
-                `/Videos/${row?.key}/score`
-              )
-            }
-          >
-            <div className="btn btn-success">Score</div>
+            <div
+              className="open-btn c-pointer text-primary"
+              onClick={() => navigate(`/Videos/${row?.key}/score`)}
+            >
+              <div className="btn btn-success">Score</div>
+            </div>
+            <div
+              className="open-btn c-pointer text-primary"
+              onClick={() =>
+                navigate(
+                  `/years/${yearId}/groups/${group}/Packages/${pack}/lectures/${lecture}/days/${row?.key}/quiz?type=vid`
+                )
+              }
+            >
+              <div className="btn btn-primary">Quiz</div>
+            </div>
           </div>
-          <div
-            className="open-btn c-pointer text-primary"
-            onClick={() =>
-              navigate(
-                `/years/${yearId}/groups/${group}/Packages/${pack}/lectures/${lecture}/days/${row?.key}/quiz?type=vid`
-              )
-            }
-          >
-            <div className="btn btn-primary">Quiz</div>
-          </div>
-        </div>
         </DropMenu>
+      ),
+    },
+    {
+      key: "actions",
+      title: "Duplicate",
+      dataIndex: "duplicate",
+      render: (text, row) => (
+        <>
+          <div className="d-flex justify-content-center align-items-center">
+            <button
+              className="btn btn-success"
+              onClick={() => {
+                setDuplicateModal(true);
+                setRowData(row);
+              }}
+            >
+              Duplicate
+            </button>
+          </div>
+        </>
       ),
     },
   ];
@@ -162,7 +187,11 @@ const location = useLocation()
         openModal={openModal}
         setOpenModal={setOpenModal}
       />
-      <EditVideo getFunction={getAllMyVediosFor} openModal={openEditModal} setOpenModal={setOpenEditModal} />
+      <EditVideo
+        getFunction={getAllMyVediosFor}
+        openModal={openEditModal}
+        setOpenModal={setOpenEditModal}
+      />
       <DeleteVideo
         openModal={openDeleteModal}
         setOpenModal={setOpenDeleteModal}
@@ -171,7 +200,17 @@ const location = useLocation()
         openModal={openShowHideModal}
         setOpenModal={setOpenShowHideModal}
       />
-      <PdfOpen getFunction={getAllMyVediosFor} openModal={pdfOpen} setOpenModal={setPdfOpen} />
+      <PdfOpen
+        getFunction={getAllMyVediosFor}
+        openModal={pdfOpen}
+        setOpenModal={setPdfOpen}
+      />
+      <Duplicate
+        rowData={rowData}
+        getFunction={getAllMyVediosFor}
+        openModal={duplicateModal}
+        setOpenModal={setDuplicateModal}
+      />
     </div>
   );
 }

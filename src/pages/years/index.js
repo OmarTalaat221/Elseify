@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   GroupsIcon,
   closedEye,
@@ -14,10 +14,10 @@ import AddYears from "../../components/years/add";
 import DeleteYears from "../../components/years/delete";
 import EditYears from "../../components/years/edit";
 import ShowHideYears from "../../components/years/showHide";
-import {baseUrl} from "../../utils/baseUrl";
+import { baseUrl } from "../../utils/baseUrl";
 import "./style.css";
-import {MdSubscriptions} from "react-icons/md";
-import {FaRegNewspaper} from "react-icons/fa";
+import { MdSubscriptions } from "react-icons/md";
+import { FaRegNewspaper } from "react-icons/fa";
 import DropMenu from "../../components/dropmenu";
 const initialData = [
   {
@@ -172,14 +172,6 @@ function Years() {
           <div className="actions-btns">
             <DropMenu child={"Actions"}>
               <div className="d-flex align-items-center gap-2">
-                <button
-                  className="btn btn-outline-primary"
-                  onClick={() => {
-                    navigate(`/years/${row?.gen_id}/lectures`);
-                  }}
-                >
-                  Lectures
-                </button>
                 <button
                   className="btn btn-outline-primary"
                   onClick={() => {

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import CustomTable from "../../components/table";
 import "./style.css";
 import AddExams from "../../components/exams/add";
@@ -15,7 +15,7 @@ import Toast from "../../components/toast";
 import EditExams from "../../components/exams/edit";
 import DeleteExams from "../../components/exams/delete";
 import ShowHideExams from "../../components/exams/showHide";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Exams() {
   const initialData = [];
